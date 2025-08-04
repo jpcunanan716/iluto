@@ -377,7 +377,7 @@ export default function RecipeFinderApp() {
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <ChefHat className="w-6 h-6" />
-              <span className="text-xl font-bold">AI Recipe Finder</span>
+              <span className="text-xl font-bold">Iluto - AI Powered Recipe Finder</span>
             </div>
             <p className="text-gray-400">Powered by Groq AI • Making cooking easier, one recipe at a time</p>
           </div>
