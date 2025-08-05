@@ -86,8 +86,8 @@ recipe-app/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/recipe-app.git
-   cd recipe-app
+   git clone https://github.com/jpcunanan716/iluto.git
+   cd iluto
    ```
 
 2. **Install dependencies**
