@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard';
 import callGroqAPI from '../services/groqAPI';
-import LoadingSpinner from './ui/LoadingSpinner';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 const FeaturedDish = () => {
     const [featuredDish, setFeaturedDish] = useState(null);

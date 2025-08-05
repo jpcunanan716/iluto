@@ -88,10 +88,10 @@ const RecipeModal = ({ recipe, isOpen, onClose }) => {
 
                     {/* Action Buttons */}
                     <div className="mt-8 pt-6 border-t border-gray-200 flex gap-4 justify-center">
-                        <button className="bg-gradient-to-r from-orange-400 to-pink-500 text-white px-6 py-3 rounded-xl hover:from-orange-500 hover:to-pink-600 transition-all duration-200 flex items-center gap-2 font-medium">
+                        {/* <button className="bg-gradient-to-r from-orange-400 to-pink-500 text-white px-6 py-3 rounded-xl hover:from-orange-500 hover:to-pink-600 transition-all duration-200 flex items-center gap-2 font-medium">
                             <Star className="w-4 h-4" />
                             Save Recipe
-                        </button>
+                        </button> */}
                         <button className="bg-blue-500 text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition-all duration-200 flex items-center gap-2 font-medium">
                             <ExternalLink className="w-4 h-4" />
                             Share Recipe

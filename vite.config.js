@@ -5,4 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: '/iluto/', // Replace with your actual repo name
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+  }
 })

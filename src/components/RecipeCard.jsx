@@ -46,7 +46,7 @@ const RecipeCard = ({ recipe, isFeatured = false, onClick }) => {
                     <h4 className="font-semibold text-gray-800 mb-2">Ingredients:</h4>
                     <div className="flex flex-wrap gap-2">
                         {ingredients.slice(0, 4).map((ingredient, index) => (
-                            <span key={index} className="bg-orange-100 text-orange-800 px-6 py-1 rounded-full text-xs">
+                            <span key={index} className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
                                 {ingredient}
                             </span>
                         ))}
