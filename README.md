@@ -55,14 +55,18 @@ recipe-app/
 │   │   ├── FeaturedDish.jsx
 │   │   ├── RecipeCard.jsx
 │   │   ├── RecipeList.jsx
-│   │   └── SearchBar.jsx
-│   ├── api/
+│   │   └── RecipeResults.jsx
+|   |   └── IngredientInput.jsx
+|   |   └── IngredientTag.jsx
+|   |   └── Header.jsx
+|   |   └── Footer.jsx
+│   ├── services/
 │   │   └── groqApi.js
-│   ├── utils/
-│   │   └── helpers.js
-│   ├── styles/
-│   │   └── main.css
+│   ├── ui/
+│   │   └── LoadingSpinner.jsx
 │   ├── App.jsx
+│   ├── Index.css
+│   ├── App.css
 │   └── main.jsx
 ├── public/
 ├── .env
