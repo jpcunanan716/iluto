@@ -13,8 +13,10 @@
     "@tailwindcss/vite": "^4.1.11",
     "groq-sdk": "^0.29.0",
     "lucide-react": "^0.536.0",
+    "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-spinners": "^0.17.0",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
