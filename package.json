@@ -9,8 +9,12 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "deploy:clean": "npx gh-pages -d dist --clean"
+    "deploy": "npx gh-pages@latest -d dist",
+    "deploy:force": "npx gh-pages@latest -d dist --force",
+    "deploy:clean": "npm run clean:gh-pages && npm run deploy",
+    "clean:gh-pages": "git push origin --delete gh-pages || echo 'gh-pages branch does not exist'",
+    "deploy:manual": "npm run build && npm run manual-deploy",
+    "manual-deploy": "cd dist && git init && git add -A && git commit -m 'Deploy to GitHub Pages' && git push -f https://github.com/jpcunanan716/iluto.git main:gh-pages && cd .. && rm -rf dist/.git"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
