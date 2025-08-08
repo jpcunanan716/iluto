@@ -1,86 +1,36 @@
-// Groq API Integration - Browser-safe configuration
-const getAPIKey = () => {
-    // For development - using environment variables
-    return import.meta.env.VITE_GROQ_API_KEY || process.env.GROQ_API_KEY;
-};
-
-const GROQ_API_KEY = getAPIKey();
-
 const callGroqAPI = async (prompt, isFeaturedDish = false, numberOfRecipes = 10) => {
     try {
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        const response = await fetch('/api/groq-proxy', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${GROQ_API_KEY}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                messages: [
-                    {
-                        role: 'system',
-                        content: `You are a chef with 20 years of experience with all types of cuisine from all around the world. 
-                        Focus on practical, delicious recipes that asian-filipino home cooks can easily follow. 
-                        Always respond with valid JSON only, no additional text or formatting. 
-                        ${isFeaturedDish ?
-                                'Generate one featured recipe in valid JSON format.' :
-                                `Generate exactly ${numberOfRecipes} recipes in a valid JSON array.`} Format:
-              ${isFeaturedDish ? `
-              {
-                "name": "string",
-                "description": "string",
-                "cookTime": "string",
-                "servings": "string",
-                "difficulty": "string",
-                "ingredients": ["string"],
-                "instructions": ["string"]
-              }` : `
-              [
-                {
-                  "name": "string",
-                  "description": "string",
-                  "cookTime": "string",
-                  "servings": "string",
-                  "difficulty": "string",
-                  "ingredients": ["string"],
-                  "instructions": ["string"]
-                }
-              ]`}`
-                    },
-                    {
-                        role: 'user',
-                        content: prompt
-                    }
-                ],
-                model: 'llama3-8b-8192',
-                temperature: 0.7,
-                max_tokens: 8192, // Increased significantly for more recipes
-                stream: false
-            }),
+                prompt,
+                isFeaturedDish,
+                numberOfRecipes
+            })
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error('API Error Response:', errorText);
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
 
-        if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        if (!data.success || !data.content) {
             throw new Error('Unexpected response structure from API');
         }
 
-        const content = data.choices[0].message.content;
+        const content = data.content;
         console.log('Raw API response content:', content); // Debug log
 
-        // Clean the content
         const cleanedContent = content.trim();
 
-        // Try parsing as JSON
         try {
             const parsedData = JSON.parse(cleanedContent);
 
-            // Validate that we got the expected number of recipes (for arrays)
             if (Array.isArray(parsedData) && !isFeaturedDish) {
                 console.log(`Generated ${parsedData.length} recipes (requested ${numberOfRecipes})`);
                 if (parsedData.length < numberOfRecipes) {
@@ -92,7 +42,6 @@ const callGroqAPI = async (prompt, isFeaturedDish = false, numberOfRecipes = 10)
         } catch (jsonError) {
             console.error('JSON parse failed:', jsonError.message);
 
-            // Try to extract JSON from markdown code blocks
             const jsonMatch = cleanedContent.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/);
             if (jsonMatch) {
                 try {
@@ -102,7 +51,6 @@ const callGroqAPI = async (prompt, isFeaturedDish = false, numberOfRecipes = 10)
                 }
             }
 
-            // Try to find JSON boundaries
             const jsonObjectMatch = cleanedContent.match(/(\{[\s\S]*\})/);
             const jsonArrayMatch = cleanedContent.match(/(\[[\s\S]*\])/);
 
@@ -127,7 +75,7 @@ const callGroqAPI = async (prompt, isFeaturedDish = false, numberOfRecipes = 10)
     } catch (error) {
         console.error('Groq API Error:', error);
 
-        // Fallback to mock data if API fails
+        // fallback logic
         if (isFeaturedDish) {
             return {
                 name: "Mediterranean Quinoa Bowl",
@@ -145,7 +93,6 @@ const callGroqAPI = async (prompt, isFeaturedDish = false, numberOfRecipes = 10)
             };
         }
 
-        // Generate multiple fallback recipes based on numberOfRecipes
         const fallbackRecipes = [];
         const baseRecipes = [
             {
@@ -192,7 +139,6 @@ const callGroqAPI = async (prompt, isFeaturedDish = false, numberOfRecipes = 10)
             }
         ];
 
-        // Repeat recipes to meet the requested number
         for (let i = 0; i < numberOfRecipes; i++) {
             fallbackRecipes.push({
                 ...baseRecipes[i % baseRecipes.length],

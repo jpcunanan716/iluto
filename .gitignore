@@ -31,3 +31,7 @@ dist-ssr
 .env.production
 .env.test
 
+# Build artifacts
+/build
+/dist
+*.js.map
