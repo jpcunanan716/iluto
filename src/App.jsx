@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Footer, RecipeModal, RecipeResults, IngredientInput } from './components';
 import FeaturedDish from './components/FeaturedDish';
-import callGroqAPI from './services/groqAPI';
+import callGroqAPI from './services/groqApi';
 
 
 export default function RecipeFinderApp() {
