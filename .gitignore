@@ -35,3 +35,4 @@ dist-ssr
 /build
 /dist
 *.js.map
+.vercel
