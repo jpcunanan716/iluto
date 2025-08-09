@@ -25,7 +25,8 @@ const FeaturedDish = () => {
       - List 5-8 ingredients
       - Provide 4-6 clear instructions
       - Focus on seasonal ingredients
-      - Difficulty should be Easy or Medium`;
+      - Difficulty should be Easy or Medium
+      - Include a variety of cuisines with an inclination towards Asian-Filipino recipes`;
 
             const dish = await callGroqAPI(prompt, true);
 
