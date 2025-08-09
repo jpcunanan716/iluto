@@ -18,7 +18,6 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Get API key from environment variable (secure on server)
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
     if (!GROQ_API_KEY) {
@@ -27,19 +26,18 @@ export default async function handler(req, res) {
     }
 
     try {
-        // Extract the same parameters your current src/services/groqApi.js uses
         const { prompt, isFeaturedDish = false, numberOfRecipes = 10 } = req.body;
 
         if (!prompt || typeof prompt !== 'string') {
             return res.status(400).json({ error: 'Valid prompt is required' });
         }
 
-        // Use the EXACT same system message from your current code
         const systemMessage = `You are a chef with 20 years of experience with all types of cuisine from all around the world. 
-        Focus on practical, delicious recipes that asian-filipino home cooks can easily follow. 
+        Focus on practical, delicious recipes that asian-filipino home cooks can easily follow. add a variety of cuisines with
+        inclination to filipino recipes and ingredients to keep the recipes interesting and diverse.
         Always respond with valid JSON only, no additional text or formatting. 
         ${isFeaturedDish ?
-                'Generate one featured recipe in valid JSON format.' :
+                'Generate one featured recipe in valid JSON format. make it unique and special but easy to follow and make.' :
                 `Generate exactly ${numberOfRecipes} recipes in a valid JSON array.`} Format:
               ${isFeaturedDish ? `
               {
@@ -63,7 +61,6 @@ export default async function handler(req, res) {
                 }
               ]`}`;
 
-        // Make the same API call your current code makes
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -109,7 +106,6 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'Invalid response from recipe service' });
         }
 
-        // Return the raw content - your existing parsing logic will handle it
         return res.status(200).json({
             success: true,
             content: data.choices[0].message.content,
