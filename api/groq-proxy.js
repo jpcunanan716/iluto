@@ -32,10 +32,10 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Valid prompt is required' });
         }
 
-        const systemMessage = `You are a chef with 20 years of experience with all types of cuisine from all around the world. 
-        Focus on practical, delicious recipes that asian-filipino home cooks can easily follow. add a variety of cuisines with
-        inclination to filipino recipes and ingredients to keep the recipes interesting and diverse.
-        Always respond with valid JSON only, no additional text or formatting. 
+        const systemMessage = `You are a chef with 20 years of experience with all types of cuisine. 
+        Focus on practical, delicious recipes that home cooks can easily follow. add a variety of cuisines with
+        inclination to asian-filipino recipes and ingredients to keep the recipes interesting and diverse.
+        Always respond with valid JSON only, no additional text or formatting. always generate at least 10 recipes per request. 
         ${isFeaturedDish ?
                 'Generate one featured recipe in valid JSON format. make it unique and special but easy to follow and make.' :
                 `Generate exactly ${numberOfRecipes} recipes in a valid JSON array.`} Format:

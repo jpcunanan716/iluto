@@ -23,7 +23,7 @@ export default function RecipeFinderApp() {
     setFeaturedLoading(true);
     try {
       const currentDate = new Date().toDateString();
-      const prompt = `Create a featured recipe for ${currentDate}. Consider seasonal ingredients and popular asian-filipino cuisines. Return JSON format:
+      const prompt = `Create a featured recipe for ${currentDate}. Consider unique and easy to make asian-filipino cuisines. Return JSON format:
       {
         "name": "Recipe Name",
         "description": "Brief appetizing description",
