@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         inclination to asian-filipino recipes and ingredients to keep the recipes interesting and diverse.
         Always respond with valid JSON only, no additional text or formatting. always generate at least 10 recipes per request. 
         ${isFeaturedDish ?
-                'Generate one featured recipe in valid JSON format. make it unique and special but easy to follow and make.' :
+                'Generate one featured recipe in valid JSON format. Include a variety of cuisines with an inclination towards Asian-Filipino recipes' :
                 `Generate exactly ${numberOfRecipes} recipes in a valid JSON array.`} Format:
               ${isFeaturedDish ? `
               {
