@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard';
+import RecipeModal from './RecipeModal';
 import callGroqAPI from '../services/groqApi';
 import LoadingSpinner from '../ui/LoadingSpinner';
 
