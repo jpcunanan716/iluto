@@ -5,7 +5,7 @@ A modern, AI-powered recipe discovery platform that generates personalized Asian
 ## 🌟 Features
 
 ### Core Features
-- **AI-Generated Recipes**: Leverages Groq's LLaMA 3 model to generate authentic Asian-Filipino recipes
+- **AI-Generated Recipes**: Leverages Groq's LLaMA 3 versatile model to generate authentic Asian-Filipino recipes
 - **Featured Dish Spotlight**: Daily/weekly featured recipes with detailed cooking instructions
 - **Smart Recipe Search**: Intelligent recipe generation based on user preferences and dietary requirements
 - **Responsive Design**: Fully responsive interface that works seamlessly across desktop, tablet, and mobile devices
@@ -33,7 +33,7 @@ A modern, AI-powered recipe discovery platform that generates personalized Asian
 
 ### AI & API Integration
 - **Groq API**: Ultra-fast AI inference platform
-- **LLaMA 3-8B**: Advanced language model for recipe generation
+- **LLaMA 3.3-70B**: Advanced language model for recipe generation
 - **REST API**: RESTful API integration for seamless data flow
 
 ### Development Tools
@@ -123,7 +123,7 @@ recipe-app/
 ### API Configuration
 The application uses Groq's OpenAI-compatible API endpoint:
 - **Base URL**: `https://api.groq.com/openai/v1/chat/completions`
-- **Model**: `llama3-8b-8192`
+- **Model**: `llama-3.3-70b-versatile`
 - **Max Tokens**: 8192 (configurable)
 - **Temperature**: 0.7 (balanced creativity)
 

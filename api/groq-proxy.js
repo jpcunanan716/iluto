@@ -78,9 +78,9 @@ export default async function handler(req, res) {
                         content: prompt
                     }
                 ],
-                model: 'llama3-8b-8192',
-                temperature: 0.7,
-                max_tokens: 8192,
+                model: 'llama-3.3-70b-versatile',
+                temperature: 0.8,
+                max_tokens: 32768,
                 stream: false
             }),
         });
