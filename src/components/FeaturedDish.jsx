@@ -7,6 +7,7 @@ const FeaturedDish = () => {
     const [featuredDish, setFeaturedDish] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const loadFeaturedDish = async () => {
         setLoading(true);
@@ -49,6 +50,14 @@ const FeaturedDish = () => {
         loadFeaturedDish();
     }, []);
 
+    const handleCardClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     if (loading) {
         return (
             <div className="p-6 text-center flex items-center justify-center">
@@ -61,7 +70,13 @@ const FeaturedDish = () => {
         return (
             <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
                 <p className="text-red-500 mb-4">{error}</p>
-                {featuredDish && <RecipeCard recipe={featuredDish} isFeatured={true} />}
+                {featuredDish && (
+                    <RecipeCard
+                        recipe={featuredDish}
+                        isFeatured={true}
+                        onClick={handleCardClick}
+                    />
+                )}
             </div>
         );
     }
@@ -73,8 +88,18 @@ const FeaturedDish = () => {
                 <p className="text-gray-600">Discover something delicious to try today</p>
             </div>
             <div className="max-w-4xl mx-auto">
-                <RecipeCard recipe={featuredDish} isFeatured={true} />
+                <RecipeCard
+                    recipe={featuredDish}
+                    isFeatured={true}
+                    onClick={handleCardClick}
+                />
             </div>
+
+            <RecipeModal
+                recipe={featuredDish}
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+            />
         </section>
     );
 };

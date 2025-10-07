@@ -1,4 +1,3 @@
-import React from 'react';
 import { X, Clock, Users, ChefHat, Star, ExternalLink } from 'lucide-react';
 
 const RecipeModal = ({ recipe, isOpen, onClose }) => {
